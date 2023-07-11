@@ -37,4 +37,4 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
         with:
-          files: test-results/**/*.trx
+          files: /home/runner/work/ShapeLib/ShapeLib/TestResults-${{ matrix.dotnet-version }}/*.trx
