@@ -24,14 +24,7 @@ jobs:
         run: dotnet build --configuration Release --no-restore
         
       - name: Test with dotnet
-        run: dotnet test --no-build --no-restore --verbosity normal --logger "trx;LogFileName=test-results.trx"
-      
-      - name: Upload dotnet test results
-        uses: actions/upload-artifact@v3
-        with:
-          name: dotnet-results-${{ matrix.dotnet-version }}
-          path: TestResults-${{ matrix.dotnet-version }}
-        if: ${{ always() }}
+        run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
         
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
