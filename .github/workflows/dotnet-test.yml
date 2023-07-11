@@ -24,7 +24,7 @@ jobs:
         run: dotnet build --configuration Release --no-restore
         
       - name: Test with dotnet
-        run: dotnet test  --no-restore --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+        run: dotnet test --no-build --no-restore --verbosity normal --logger "trx;LogFileName=test-results.trx"
       
       - name: Upload dotnet test results
         uses: actions/upload-artifact@v3
@@ -37,4 +37,4 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
         with:
-          files: /home/runner/work/ShapeLib/ShapeLib/TestResults-${{ matrix.dotnet-version }}/*.trx
+          files: "**/test-results.trx"
